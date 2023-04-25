@@ -74,6 +74,34 @@
         </nav>
       </div>
     </header>
+    <main>
+      <h1 class="text-center mt-4 text-primary fw-bold">Listings</h1>
+      <!-- all listing here -->
+      <div class="all-listings d-flex justify-content-center"></div>
+
+      <template>
+        <div class="all-listings d-flex justify-content-center">
+          <div
+            class="container my-5 d-flex flex-wrap gap-3 justify-content-around"
+          >
+            <div class="card border-0" style="width: 18rem">
+              <a href="/src/html/singleEntry.html" class="text-decoration-none">
+                <img
+                  class="card-img-top"
+                  src="https://images.unsplash.com/photo-1682337913785-c81be90f01d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  alt="${title}"
+                />
+                <div class="card-body">
+                  <h2 class="card-title text-primary">${title} Title</h2>
+                  <p class="card-text text-primary mb-1">Current bid: ${bid}</p>
+                  <p class="card-text text-danger">${endsAt} dd/mm/yyyy</p>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
+      </template>
+    </main>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
