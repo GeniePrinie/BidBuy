@@ -19,6 +19,49 @@
     <script src="/src/js/index.js" defer type="module"></script>
   </head>
   <body>
+    <header class="py-3 sticky-top shadow bg-primary">
+      <div class="container-fluid">
+        <nav
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-sm-between"
+        >
+          <a
+            href="./homeWithToken.html"
+            class="me-sm-3 mb-0 text-white text-decoration-none"
+          >
+            <div class="fst-italic fw-bold me-3 ms-3 mb-0 fs-1">BidBuy</div>
+          </a>
+
+          <div class="text-end d-flex flex-wrap gap-4 align-items-center">
+            <a href="/sell" class="text-white text-decoration-none fs-4 ms-1">
+              Sell
+            </a>
+            <div class="text-white text-decoration-none fs-4">
+              <i class="fa-solid fa-coins"></i> 1000
+            </div>
+
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle fs-4"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                User
+              </button>
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <a class="dropdown-item" href="./profile.html">View Profile</a>
+                <a class="dropdown-item" href="/index.html">Log out</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
