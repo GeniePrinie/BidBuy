@@ -32,7 +32,10 @@
           </a>
 
           <div class="text-end d-flex flex-wrap gap-4 align-items-center">
-            <a href="/sell" class="text-white text-decoration-none fs-4 ms-1">
+            <a
+              href="./sell.html"
+              class="text-white text-decoration-none fs-4 ms-1"
+            >
               Sell
             </a>
             <div class="text-white text-decoration-none fs-4">
@@ -65,6 +68,88 @@
     <main>
       <!-- modal -->
       <div class="modal-component"></div>
+
+      <div class="container mt-5">
+        <div
+          class="card card-custom pt-4 my-4 mx-auto d-md-flex justify-content-center border-0 shadow-sm bg-white"
+        >
+          <h1 class="fs-1 fw-bold text-primary text-center m-3">Sell</h1>
+
+          <div class="card card-custom card-body border-0">
+            <form class="form-login" id="form-login" novalidate>
+              <div class="form-floating my-4 mx-3">
+                <input
+                  name="title"
+                  type="text"
+                  id="title"
+                  class="form-control mb-3"
+                  aria-label="Title of a new listing"
+                  required
+                />
+                <label for="title" class="form-label">Title</label>
+
+                <div class="invalid-feedback">Title required</div>
+              </div>
+
+              <div class="form-floating my-4 mx-3">
+                <textarea
+                  name="body"
+                  id="body"
+                  aria-label="Description of the listing"
+                  class="form-control mb-3"
+                  rows="3"
+                >
+                </textarea>
+                <label for="body">Description</label>
+              </div>
+
+              <div class="form-floating my-4 mx-3">
+                <input
+                  name="media"
+                  type="text"
+                  id="tags"
+                  class="form-control mb-3"
+                  aria-label="Tag(s) of a new entry"
+                />
+                <label for="media">Tag(s) ex: cool, awesome, trendy </label>
+              </div>
+
+              <div class="form-floating my-4 mx-3">
+                <input
+                  name="media"
+                  type="url"
+                  id="media"
+                  class="form-control mb-3"
+                  aria-label="Media of the listing"
+                />
+                <label for="media"
+                  >Media URL ex: https://url.com/image.jpg"</label
+                >
+              </div>
+
+              <div class="form-floating my-4 mx-3">
+                <input
+                  name="endsAt"
+                  type="datetime-local"
+                  id="endsAt"
+                  class="form-control mb-3"
+                  aria-label="Ending time for bidding of the listing"
+                />
+                <label for="endsAt">Ends At</label>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-secondary m-3"
+                data-toggle="modal"
+                data-target="#feedbackModal"
+              >
+                Sell
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script
