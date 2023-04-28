@@ -6,7 +6,7 @@ import { loadFromLocalStorage } from '../shared/localStorage.js';
  * @returns {Promise} Response data from api
  */
 export async function getListings() {
-  const response = await fetch(`${API_AUCTION_URL}/listing`, {
+  const response = await fetch(`${API_AUCTION_URL}/listings`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',

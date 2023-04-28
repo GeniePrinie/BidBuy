@@ -1,4 +1,4 @@
-import { createListing } from './features/index.js';
+import { createListing, showListings, showListing } from './features/index.js';
 
 const pages = {
   Start: '/index.html',
@@ -9,7 +9,7 @@ const pages = {
   Profile: '/html/user/profile/',
   ListingCreate: '/html/listing/create/',
   ListingDetails: '/html/listing/details/',
-  ListingSearch: '/html/listing/search/',
+  ListingSearch: '/src/html/listing/search/',
 };
 
 const path = location.pathname;
@@ -18,10 +18,10 @@ switch (path) {
   case pages.Start:
   case pages.Home:
   case pages.ListingSearch:
-    //     showListings();
-    //     break;
-    //   case pages.ListingDetails:
-    //     showListing();
+    showListings();
+    break;
+  case pages.ListingDetails:
+    showListing();
     break;
   case pages.ListingCreate:
     createListing();
