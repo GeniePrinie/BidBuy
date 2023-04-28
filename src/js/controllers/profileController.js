@@ -5,7 +5,7 @@ import { loadFromLocalStorage } from '../shared/localStorage.js';
  * Gets all profiles by using a GET api request
  * @returns {Promise} Response data from api
  */
-export async function getAllProfiles() {
+export async function getProfiles() {
   const bearerToken = loadFromLocalStorage('token');
   const response = await fetch(`${API_AUCTION_URL}/profiles?_listings=true`, {
     method: 'POST',
@@ -16,7 +16,7 @@ export async function getAllProfiles() {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid user input: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
@@ -27,7 +27,7 @@ export async function getAllProfiles() {
  * @param {object} username User profile
  * @returns {Promise} Response data from api
  */
-export async function getSingleProfile(username) {
+export async function getProfile(username) {
   const bearerToken = loadFromLocalStorage('token');
   const response = await fetch(`${API_AUCTION_URL}/profiles/${username}`, {
     method: 'GET',
@@ -38,7 +38,7 @@ export async function getSingleProfile(username) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid user: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 }
 
@@ -63,7 +63,7 @@ export async function updateEntryMedia(username, body) {
   );
 
   if (!response.ok) {
-    throw new Error(`Invalid user: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 }
 
@@ -86,7 +86,7 @@ export async function getAllListingsForProfile(username) {
   );
 
   if (!response.ok) {
-    throw new Error(`Invalid user: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 }
 
@@ -106,6 +106,6 @@ export async function getAllBidsForProfile(username) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid user: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 }

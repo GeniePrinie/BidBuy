@@ -19,7 +19,7 @@ export async function register(body) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid user input: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
@@ -39,7 +39,7 @@ export async function login(body) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid user: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   const { accessToken, ...user } = await response.json();

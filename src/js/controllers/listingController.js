@@ -6,7 +6,7 @@ import { loadFromLocalStorage } from '../shared/localStorage.js';
  * @returns {Promise} Response data from api
  */
 export async function getListings() {
-  const response = await fetch(`${API_AUCTION_URL}/listings`, {
+  const response = await fetch(`${API_AUCTION_URL}/listing`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
@@ -14,7 +14,7 @@ export async function getListings() {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid endpoint: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
@@ -37,7 +37,7 @@ export async function getListing(id) {
   );
 
   if (!response.ok) {
-    throw new Error(`Invalid entry id: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
@@ -60,7 +60,7 @@ export async function createListing(body) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid input data: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
@@ -84,7 +84,7 @@ export async function updateListing(id, body) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid input data: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
@@ -106,7 +106,7 @@ export async function removeListing(id) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid entry id: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
@@ -130,7 +130,7 @@ export async function bidOnListing(id, body) {
   });
 
   if (!response.ok) {
-    throw new Error(`Invalid entry id: Http Status ${response.status}`);
+    throw new Error(`Http Status ${response.status}`);
   }
 
   return await response.json();
