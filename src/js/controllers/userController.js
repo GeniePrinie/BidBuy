@@ -1,22 +1,22 @@
-import { API_SOCIAL_URL } from '../shared/constants.mjs';
-import { save, remove } from '../shared/storage.mjs';
-import { fetchRequestWithoutToken } from '../shared/api.mjs';
+import { API_AUCTION_URL } from '../shared/constants.js';
+import {
+  saveToLocalStorage,
+  removeFromLocalStorage,
+} from '../shared/localStorage.js';
 
 /**
  * Creates a new user by using a POST api request
- * @param {object} profile User profile
+ * @param {object} body User profile
  * @returns {Promise} Response data from api
  */
-export async function register(profile) {
-  const apiEndpoint = API_SOCIAL_URL + '/auth/register';
-  const apiMethod = 'POST';
-  const apiBody = JSON.stringify(profile);
-
-  const response = await fetchRequestWithoutToken(
-    apiEndpoint,
-    apiMethod,
-    apiBody
-  );
+export async function register(body) {
+  const response = await fetch(`${API_AUCTION_URL}/auth/register`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
 
   if (!response.ok) {
     throw new Error(`Invalid user input: Http Status ${response.status}`);
@@ -27,18 +27,16 @@ export async function register(profile) {
 
 /**
  * Gets a bearer token by using a POST api request and saves it in local storage
- * @param {object} profile User profile
+ * @param {object} body User profile
  */
-export async function login(profile) {
-  const apiEndpoint = API_SOCIAL_URL + '/auth/login';
-  const apiMethod = 'POST';
-  const apiBody = JSON.stringify(profile);
-
-  const response = await fetchRequestWithoutToken(
-    apiEndpoint,
-    apiMethod,
-    apiBody
-  );
+export async function login(body) {
+  const response = await fetch(`${API_AUCTION_URL}/auth/login`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
 
   if (!response.ok) {
     throw new Error(`Invalid user: Http Status ${response.status}`);
@@ -46,18 +44,14 @@ export async function login(profile) {
 
   const { accessToken, ...user } = await response.json();
 
-  save('token', accessToken);
-  save('profile', user);
-
-  // const userName = profile.name;
-  // const userOwner = document.querySelector(".user-owner");
-  // userOwner.innerHTML += `${userName}`;
+  saveToLocalStorage('token', accessToken);
+  saveToLocalStorage('profile', user);
 }
 
 /**
  * Clears the local storage of bearer token and user profile
  */
 export async function logout() {
-  remove('token');
-  remove('profile');
+  removeFromLocalStorage('token');
+  removeFromLocalStorage('profile');
 }

@@ -1,4 +1,4 @@
-import { API_AUCTION_URL } from '../shared/constants.mjs';
+import { API_AUCTION_URL } from '../shared/constants.js';
 import { loadFromLocalStorage } from '../shared/localStorage.js';
 
 /**
@@ -22,7 +22,7 @@ export async function getListings() {
 
 /**
  * Gets a specific listing by using a GET api request
- * @param {number} id Entry id
+ * @param {number} id Listing id
  * @returns {Promise} Response data from api
  */
 export async function getListing(id) {
@@ -44,8 +44,8 @@ export async function getListing(id) {
 }
 
 /**
- * Creates an entry by using a POST api request
- * @param {object} body Entry body
+ * Creates a listing by using a POST api request
+ * @param {object} body Listing body
  * @returns {Promise} Response data from api
  */
 export async function createListing(body) {
@@ -66,81 +66,72 @@ export async function createListing(body) {
   return await response.json();
 }
 
-// /**
-//  * Updates a specific entry by using a PUT api request
-//  * @param {number} id Entry id
-//  * @param {object} body Entry body
-//  * @returns {Promise} Response data from api
-//  */
-// export async function updateEntry(id, body) {
-//   const apiEndpoint = `${API_SOCIAL_URL}/posts/${id}`;
-//   const apiMethod = 'PUT';
-//   const apiBody = JSON.stringify(body);
+/**
+ * Updates a specific listing by using a PUT api request
+ * @param {number} id Listing id
+ * @param {object} body Listing body
+ * @returns {Promise} Response data from api
+ */
+export async function updateListing(id, body) {
+  const bearerToken = loadFromLocalStorage('token');
+  const response = await fetch(`${API_AUCTION_URL}/listings/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {
+      Authorization: 'Bearer ' + bearerToken,
+      'Content-type': 'application/json',
+    },
+  });
 
-//   const response = await fetchRequestWithToken(apiEndpoint, apiMethod, apiBody);
+  if (!response.ok) {
+    throw new Error(`Invalid input data: Http Status ${response.status}`);
+  }
 
-//   if (!response.ok) {
-//     throw new Error(`Invalid input data: Http Status ${response.status}`);
-//   }
+  return await response.json();
+}
 
-//   return await response.json();
-// }
+/**
+ * Removes a specific listing by using a DELETE api request
+ * @param {number} id Listing id
+ * @returns {Promise} Response data from api
+ */
+export async function removeListing(id) {
+  const bearerToken = loadFromLocalStorage('token');
+  const response = await fetch(`${API_AUCTION_URL}/listings/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + bearerToken,
+      'Content-type': 'application/json',
+    },
+  });
 
-// /**
-//  * Removes a specific entry by using a DELETE api request
-//  * @param {number} id Entry id
-//  * @returns {Promise} Response data from api
-//  */
-// export async function removeEntry(id) {
-//   const apiEndpoint = `${API_SOCIAL_URL}/posts/${id}`;
-//   const apiMethod = 'DELETE';
-//   const apiBody = '';
+  if (!response.ok) {
+    throw new Error(`Invalid entry id: Http Status ${response.status}`);
+  }
 
-//   const response = await fetchRequestWithToken(apiEndpoint, apiMethod, apiBody);
+  return await response.json();
+}
 
-//   if (!response.ok) {
-//     throw new Error(`Invalid entry id: Http Status ${response.status}`);
-//   }
+/**
+ * Adds a bid amount to a specific listing by using a POST api request
+ * @param {number} id Listing id
+ * @param {object} body Listing body
+ * @returns {Promise} Response data from api
+ */
+export async function bidOnListing(id, body) {
+  const bearerToken = loadFromLocalStorage('token');
+  const response = await fetch(`${API_AUCTION_URL}/listings/${id}/bids`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {
+      Authorization: 'Bearer ' + bearerToken,
+      'Content-type': 'application/json',
+    },
+  });
 
-//   return await response.json();
-// }
+  if (!response.ok) {
+    throw new Error(`Invalid entry id: Http Status ${response.status}`);
+  }
 
-// /**
-//  * Adds a reaction emoji to a specific entry by using a PUT api request
-//  * @param {number} id Entry id
-//  * @param {string} emoji Entry emoji
-//  * @returns {Promise} Response data from api
-//  */
-// export async function reactToEntry(id, emoji) {
-//   const apiEndpoint = `${API_SOCIAL_URL}/posts/${id}/react/${emoji}`;
-//   const apiMethod = 'PUT';
-//   const apiBody = '';
-
-//   const response = await fetchRequestWithToken(apiEndpoint, apiMethod, apiBody);
-
-//   if (!response.ok) {
-//     throw new Error(`Invalid entry id: Http Status ${response.status}`);
-//   }
-
-//   return await response.json();
-// }
-
-// /**
-//  * Adds a comment to a specific entry by using a POST api request
-//  * @param {number} id Entry id
-//  * @param {object} body Entry body
-//  * @returns {Promise} Response data from api
-//  */
-// export async function commentOnEntry(id, body) {
-//   const apiEndpoint = `${API_SOCIAL_URL}/posts/${id}/comment`;
-//   const apiMethod = 'POST';
-//   const apiBody = JSON.stringify(body);
-
-//   const response = await fetchRequestWithToken(apiEndpoint, apiMethod, apiBody);
-
-//   if (!response.ok) {
-//     throw new Error(`Invalid entry id: Http Status ${response.status}`);
-//   }
-
-//   return await response.json();
-// }
+  return await response.json();
+}
