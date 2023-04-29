@@ -90,11 +90,12 @@
                     <div
                       id="custCarousel"
                       class="carousel slide"
+                      data-interval="false"
                       data-ride="carousel"
                       align="center"
                     >
                       <!-- slides -->
-                      <div class="carousel-inner">
+                      <div class="carousel-inner display-carousel-img">
                         <div class="carousel-item active">
                           <img
                             src="https://images.unsplash.com/photo-1559598467-f8b76c8155d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
@@ -209,13 +210,7 @@
                 <hr />
                 <p class="fs-2">Current bid: ${currentBid}</p>
 
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
-                </p>
+                <p>${description}</p>
                 <hr />
                 <p class="text-danger mt-3 fs-4 fw-bold">
                   Closes in ${countDownTime}

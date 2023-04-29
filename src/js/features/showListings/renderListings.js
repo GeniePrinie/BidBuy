@@ -16,10 +16,11 @@ export function renderListings(listings) {
     const mediaImage = listing.media;
     const bidCounts = listing._count.bids;
     const endsAt = listing.endsAt;
+    const id = listing.id;
 
     apiListings.innerHTML += `
         <div class="card border-0" style="width: 18rem">
-          <a href="/src/html/singleEntry.html" class="text-decoration-none">
+          <a href="/src/html/listing/details/?id=${id}" class="text-decoration-none">
             <img
               class="card-img-top"
               src="${mediaImage}"

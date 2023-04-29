@@ -1,14 +1,14 @@
-import { createListing, showListings, showListing } from './features/index.js';
+import { showListings, showListing } from './features/index.js';
 
 const pages = {
   Start: '/index.html',
   Home: '/',
-  Register: '/html/user/register/',
-  Login: '/html/user/login/',
-  Logout: '/html/user/logout/',
-  Profile: '/html/user/profile/',
-  ListingCreate: '/html/listing/create/',
-  ListingDetails: '/html/listing/details/',
+  Register: '/src/html/user/register/',
+  Login: '/src/html/user/login/',
+  Logout: '/src/html/user/logout/',
+  Profile: '/src/html/user/profile/',
+  ListingCreate: '/src/html/listing/create/',
+  ListingDetails: '/src/html/listing/details/',
   ListingSearch: '/src/html/listing/search/',
 };
 
@@ -24,7 +24,7 @@ switch (path) {
     showListing();
     break;
   case pages.ListingCreate:
-    createListing();
+    // createListing();
     break;
   //   case pages.Profile:
   //     showProfile();

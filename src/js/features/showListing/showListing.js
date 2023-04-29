@@ -10,21 +10,7 @@ export function showListing() {
   const id = params.get('id');
   getListing(id)
     .then((listing) => {
-      const listingData = {
-        title: listing.title,
-        description: listing.description,
-        tags: listing.tags,
-        media: listing.media,
-        created: listing.created,
-        id: listing.id,
-        endsAt: listing.endsAt,
-        bidCounts: listing._count.bids,
-        bidsAmount: listing.bids.amount,
-        bidderName: listing.bids.bidderName,
-        bidsCreated: listing.bids.created,
-        seller: listing.seller.name,
-      };
-      renderListing(listingData);
+      renderListing(listing);
     })
     .catch((error) => {
       alert(error);
