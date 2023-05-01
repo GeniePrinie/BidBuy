@@ -48,7 +48,7 @@ export async function getProfile(username) {
  * @param {object} body Listing body
  * @returns {Promise} Response data from api
  */
-export async function updateEntryMedia(username, body) {
+export async function updateProfileAvatar(username, body) {
   const bearerToken = loadFromLocalStorage('token');
   const response = await fetch(
     `${API_AUCTION_URL}/profiles/${username}/media`,

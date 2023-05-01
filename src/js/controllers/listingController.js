@@ -48,7 +48,7 @@ export async function getListing(id) {
  * @param {object} body Listing body
  * @returns {Promise} Response data from api
  */
-export async function createListing(body) {
+export async function makeListing(body) {
   const bearerToken = loadFromLocalStorage('token');
   const response = await fetch(`${API_AUCTION_URL}/listings`, {
     method: 'POST',

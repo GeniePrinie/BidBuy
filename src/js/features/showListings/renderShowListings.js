@@ -1,8 +1,11 @@
+import { isValidUrl } from '../../helpers/checkUrl.js';
+import { DEFAULT_LISTING_IMAGE } from '../../shared/constants.js';
+
 /**
  * Renders out listings to the html page
  * @param {Array} listings Listings' data
  */
-export function renderListings(listings) {
+export function renderShowListings(listings) {
   const apiListings = document.querySelector('.display-listings');
 
   if (listings.length == 0) {
@@ -13,7 +16,10 @@ export function renderListings(listings) {
 
   listings.forEach((listing) => {
     const listingTitle = listing.title;
-    const mediaImage = listing.media;
+    const mediaImage = isValidUrl(listing.media)
+      ? listing.media
+      : DEFAULT_LISTING_IMAGE;
+
     const bidCounts = listing._count.bids;
     const endsAt = listing.endsAt;
     const id = listing.id;

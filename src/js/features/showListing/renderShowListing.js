@@ -2,7 +2,7 @@
  * Renders out a listing to the html page
  * @param {Array} listing Listing' data
  */
-export function renderListing(listing) {
+export function renderShowListing(listing) {
   const listingMediaData = {
     title: listing.title,
     media: listing.media,

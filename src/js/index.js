@@ -1,4 +1,5 @@
-import { showListings, showListing } from './features/index.js';
+import { showListings, showListing, createListing } from './features/index.js';
+import { redirectToSearchListings } from './helpers/redirects.js';
 
 const pages = {
   Start: '/index.html',
@@ -17,6 +18,8 @@ const path = location.pathname;
 switch (path) {
   case pages.Start:
   case pages.Home:
+    redirectToSearchListings();
+    break;
   case pages.ListingSearch:
     showListings();
     break;
@@ -24,7 +27,7 @@ switch (path) {
     showListing();
     break;
   case pages.ListingCreate:
-    // createListing();
+    createListing();
     break;
   //   case pages.Profile:
   //     showProfile();

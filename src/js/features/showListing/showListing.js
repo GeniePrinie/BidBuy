@@ -1,5 +1,5 @@
 import { getListing } from '../../controllers/listingController.js';
-import { renderListing } from './renderListing.js';
+import { renderShowListing } from './renderShowListing.js';
 
 /**
  * Displays listing based of URL parameter (id) on current page
@@ -10,7 +10,7 @@ export function showListing() {
   const id = params.get('id');
   getListing(id)
     .then((listing) => {
-      renderListing(listing);
+      renderShowListing(listing);
     })
     .catch((error) => {
       alert(error);

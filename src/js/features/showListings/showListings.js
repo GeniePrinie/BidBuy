@@ -1,5 +1,5 @@
 import { getListings } from '../../controllers/listingController.js';
-import { renderListings } from './renderListings.js';
+import { renderShowListings } from './renderShowListings.js';
 
 /**
  * Displays all the listings
@@ -8,7 +8,7 @@ export function showListings() {
   // get all listings from getListings()
   getListings()
     .then((listings) => {
-      renderListings(listings);
+      renderShowListings(listings);
     })
     .catch((error) => {
       alert(error);
