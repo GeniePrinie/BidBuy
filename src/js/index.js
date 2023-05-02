@@ -3,6 +3,7 @@ import {
   showListing,
   createListing,
   loginUser,
+  registerUser,
 } from './features/index.js';
 import { redirectToSearchListings } from './helpers/redirects.js';
 
@@ -37,9 +38,9 @@ switch (path) {
   //   case pages.Profile:
   //     showProfile();
   //     break;
-  //   case pages.Register:
-  //     registerUser();
-  //     break;
+  case pages.Register:
+    registerUser();
+    break;
   case pages.Login:
     loginUser();
     break;
