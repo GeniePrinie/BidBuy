@@ -15,27 +15,22 @@ export function renderShowListings(listings) {
   apiListings.innerHTML = '';
 
   listings.forEach((listing) => {
-    const listingTitle = listing.title;
     const mediaImage = isValidUrl(listing.media)
       ? listing.media
       : DEFAULT_LISTING_IMAGE;
 
-    const bidCounts = listing._count.bids;
-    const endsAt = listing.endsAt;
-    const id = listing.id;
-
     apiListings.innerHTML += `
         <div class="card border-0" style="width: 18rem">
-          <a href="/src/html/listing/details/?id=${id}" class="text-decoration-none">
+          <a href="/src/html/listing/details/?id=${listing.id}" class="text-decoration-none">
             <img
               class="card-img-top"
               src="${mediaImage}"
-              alt="${listingTitle}"
+              alt="${listing.title}"
             />
             <div class="card-body">
-              <h2 class="card-title text-primary">${listingTitle}</h2>
-              <p class="card-text text-primary mb-1">Current bid counts: ${bidCounts}</p>
-              <p class="card-text text-danger">Ends at: ${endsAt}</p>
+              <h2 class="card-title text-primary">${listing.title}</h2>
+              <p class="card-text text-primary mb-1">Current bid counts: ${listing._count.bids}</p>
+              <p class="card-text text-danger">Ends at: ${listing.endsAt}</p>
             </div>
           </a>
         </div>

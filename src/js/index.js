@@ -1,4 +1,9 @@
-import { showListings, showListing, createListing } from './features/index.js';
+import {
+  showListings,
+  showListing,
+  createListing,
+  loginUser,
+} from './features/index.js';
 import { redirectToSearchListings } from './helpers/redirects.js';
 
 const pages = {
@@ -35,9 +40,9 @@ switch (path) {
   //   case pages.Register:
   //     registerUser();
   //     break;
-  //   case pages.Login:
-  //     loginUser();
-  //     break;
+  case pages.Login:
+    loginUser();
+    break;
   //   case pages.Logout:
   //     lougoutUser();
   //     break;
