@@ -1,6 +1,9 @@
 import { register } from '../../controllers/userController.js';
-import { createModal } from '../../shared/modal.js';
-import { redirectToSearchListings } from '../../helpers/redirects.js';
+import { redirectToLoginUser } from '../../helpers/redirects.js';
+import {
+  displaySuccessful,
+  displayError,
+} from '../../helpers/eventDisplayer.js';
 
 /**
  * Register a new account based of user input
@@ -20,14 +23,13 @@ export function registerUser() {
 
       register(profile)
         .then((user) => {
-          createModal(`User for <b>${user.name}</b> created successfully.`);
-          const clearForm = document.querySelector('.modal-close-register');
-          clearForm.addEventListener('click', redirectToSearchListings);
+          displaySuccessful(
+            `registered user ${user.name}`,
+            redirectToLoginUser
+          );
         })
         .catch((error) => {
-          createModal(
-            `User not created. <br>Error message: <em>${error.message}</em>.`
-          );
+          displayError(error);
         });
     });
   }

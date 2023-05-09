@@ -1,6 +1,10 @@
 import { login } from '../../controllers/userController.js';
-import { createModal } from '../../shared/modal.js';
 import { redirectToSearchListings } from '../../helpers/redirects.js';
+
+import {
+  displaySuccessful,
+  displayError,
+} from '../../helpers/eventDisplayer.js';
 
 /**
  * Log user into application based of user input
@@ -20,14 +24,10 @@ export function loginUser() {
 
       login(profile)
         .then(() => {
-          createModal(`Successful login.`);
-          const clearForm = document.querySelector('.modal-close-login');
-          clearForm.addEventListener('click', redirectToSearchListings);
+          displaySuccessful(`logged in`, redirectToSearchListings);
         })
         .catch((error) => {
-          createModal(
-            `Invalid user credentials. <br>Error message: <em>${error.message}</em>.`
-          );
+          displayError(error);
         });
     });
   }
