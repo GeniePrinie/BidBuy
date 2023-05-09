@@ -15,12 +15,12 @@ export function renderShowListings(listings) {
   apiListings.innerHTML = '';
 
   listings.forEach((listing) => {
-    const mediaImage = isValidUrl(listing.media)
+    const mediaImage = isValidUrl(listing.media[0])
       ? listing.media
       : DEFAULT_LISTING_IMAGE;
 
     apiListings.innerHTML += `
-        <div class="card border-0" style="width: 18rem">
+        <div class="card border-0 listings-div" style="width: 18rem">
           <a href="/src/html/listing/details/?id=${listing.id}" class="text-decoration-none">
             <img
               class="card-img-top"
@@ -36,4 +36,41 @@ export function renderShowListings(listings) {
         </div>
      `;
   });
+}
+
+/**
+ * Renders out a search bar in the header
+ */
+export function renderSearchBar() {
+  const searchBar = document.querySelector('.display-search');
+  searchBar.innerHTML = `
+    <form role="search">
+      <input
+        type="search"
+        class="form-control search"
+        placeholder="Search..."
+        aria-label="Search"
+      />
+    </form>`;
+}
+
+/**
+ * Filters listings based on search from user
+ * @param {Array} listings Listings' data
+ * @returns {Array} Filtered listings
+ */
+export function renderSearchedListings(listings) {
+  const userSearch = document.querySelector('.search');
+
+  userSearch.onkeyup = function (event) {
+    const searchValue = event.target.value.trim().toLowerCase();
+
+    const filteredListings = listings.filter((listing) => {
+      if (listing.title.toLowerCase().includes(searchValue)) {
+        return true;
+      }
+    });
+
+    renderShowListings(filteredListings);
+  };
 }

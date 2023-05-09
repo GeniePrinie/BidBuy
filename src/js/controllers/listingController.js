@@ -6,12 +6,15 @@ import { loadFromLocalStorage } from '../shared/localStorage.js';
  * @returns {Promise} Response data from api
  */
 export async function getListings() {
-  const response = await fetch(`${API_AUCTION_URL}/listings`, {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-    },
-  });
+  const response = await fetch(
+    `${API_AUCTION_URL}/listings?sort=created&sortOrder=desc`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    }
+  );
 
   if (!response.ok) {
     throw new Error(`Http Status ${response.status}`);

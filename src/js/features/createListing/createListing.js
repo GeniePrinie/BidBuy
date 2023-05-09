@@ -1,6 +1,9 @@
 import { makeListing } from '../../controllers/listingController.js';
-import { createModal } from '../../shared/modal.js';
 import { redirectToSearchListings } from '../../helpers/redirects.js';
+import {
+  displaySuccessful,
+  displayError,
+} from '../../helpers/eventDisplayer.js';
 
 /**
  * Create entry based of user input
@@ -19,16 +22,13 @@ export function createListing() {
 
       makeListing(listingDataFixed)
         .then((listing) => {
-          createModal(
-            `Listing named: <b>${listing.title}</b> successfully created.`
+          displaySuccessful(
+            `created listing <b>${listing.title}</b>`,
+            redirectToSearchListings
           );
-          const clearForm = document.querySelector('.modal-close-entry');
-          clearForm.addEventListener('click', redirectToSearchListings);
         })
         .catch((error) => {
-          createModal(
-            `<b>Listing not created.</b> <br>Error message: <em>${error.message}</em>.`
-          );
+          displayError(error);
         });
     });
   }
@@ -40,10 +40,6 @@ export function createListing() {
  * @returns {object} Validated user input
  */
 function restructureUserInput(listing) {
-  if (listing.title == '') {
-    delete listing.title;
-  }
-
   if (listing.description == '') {
     delete listing.description;
   }

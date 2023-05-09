@@ -1,17 +1,22 @@
 import { getListings } from '../../controllers/listingController.js';
-import { renderShowListings } from './renderShowListings.js';
+import { displayError } from '../../helpers/eventDisplayer.js';
+import {
+  renderShowListings,
+  renderSearchBar,
+  renderSearchedListings,
+} from './renderShowListings.js';
 
 /**
  * Displays all the listings
  */
 export function showListings() {
-  // get all listings from getListings()
   getListings()
     .then((listings) => {
       renderShowListings(listings);
+      renderSearchBar();
+      renderSearchedListings(listings);
     })
     .catch((error) => {
-      alert(error);
+      displayError(error);
     });
 }
-// render out all the results with renderListings.js

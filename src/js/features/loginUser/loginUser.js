@@ -1,6 +1,5 @@
 import { login } from '../../controllers/userController.js';
 import { redirectToSearchListings } from '../../helpers/redirects.js';
-
 import {
   displaySuccessful,
   displayError,
