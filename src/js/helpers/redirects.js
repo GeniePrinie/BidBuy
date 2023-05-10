@@ -11,3 +11,10 @@ export function redirectToLoginUser() {
 export function redirectToSearchListings() {
   window.location.replace('/src/html/listing/search/');
 }
+
+/**
+ * Redirects to profile page
+ */
+export function redirectToProfileDetails() {
+  window.location.replace('/src/html/profile/details/');
+}

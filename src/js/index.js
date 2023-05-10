@@ -6,6 +6,7 @@ import {
   registerUser,
   logoutUser,
   showProfile,
+  editProfile,
 } from './features/index.js';
 import { redirectToSearchListings } from './helpers/redirects.js';
 
@@ -15,7 +16,8 @@ const pages = {
   Register: '/src/html/user/register/',
   Login: '/src/html/user/login/',
   Logout: '/src/html/user/logout/',
-  Profile: '/src/html/profile/',
+  ProfileDetails: '/src/html/profile/details/',
+  ProfileEdit: '/src/html/profile/edit/',
   ListingCreate: '/src/html/listing/create/',
   ListingDetails: '/src/html/listing/details/',
   ListingSearch: '/src/html/listing/search/',
@@ -37,8 +39,11 @@ switch (path) {
   case pages.ListingCreate:
     createListing();
     break;
-  case pages.Profile:
+  case pages.ProfileDetails:
     showProfile();
+    break;
+  case pages.ProfileEdit:
+    editProfile();
     break;
   case pages.Register:
     registerUser();

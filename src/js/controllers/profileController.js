@@ -40,6 +40,8 @@ export async function getProfile(username) {
   if (!response.ok) {
     throw new Error(`Http Status ${response.status}`);
   }
+
+  return await response.json();
 }
 
 /**
@@ -65,6 +67,8 @@ export async function updateProfileAvatar(username, body) {
   if (!response.ok) {
     throw new Error(`Http Status ${response.status}`);
   }
+
+  return await response.json();
 }
 
 /**
@@ -88,6 +92,8 @@ export async function getAllListingsForProfile(username) {
   if (!response.ok) {
     throw new Error(`Http Status ${response.status}`);
   }
+
+  return await response.json();
 }
 
 /**
@@ -108,4 +114,6 @@ export async function getAllBidsForProfile(username) {
   if (!response.ok) {
     throw new Error(`Http Status ${response.status}`);
   }
+
+  return await response.json();
 }

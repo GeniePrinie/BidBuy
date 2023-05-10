@@ -1,17 +1,20 @@
-// import { isValidUrl } from '../../helpers/checkUrl.js';
-// import { DEFAULT_AVATAR } from '../../shared/constants.js';
+import { isValidUrl } from '../../helpers/checkUrl.js';
+import { DEFAULT_LISTING_IMAGE } from '../../shared/constants.js';
 
 /**
  * Renders out a user profile to the html page
  * @param {object} profile User profile
+ * @param {object} listings Listing for user profile
  */
-export function renderShowProfile(profile) {
+export function renderShowProfile(profile, listings) {
   const displayProfile = document.querySelector('.display-profile');
 
-  // const editProfileButton = getEditProfileButton();
-  // const offeredByUser = getOfferedByUser(profile.name);
+  const editProfileButton = getEditProfileButton();
+  const listingsOfferedByUser = getListingsOfferedByUser(listings);
 
   displayProfile.innerHTML = `  
+
+  ${editProfileButton}
   <div class="card bg-white border-1 shadow border-primary mt-3 mx-5 mb-5 rounded-0">
     <div class="card-body text-center">
         <img src="${profile.avatar}" alt="${profile.name}" class="img-profile d-block ms-auto me-auto" width="200px"/>
@@ -21,65 +24,59 @@ export function renderShowProfile(profile) {
         <div class="card-text fs-4">
             Credits: ${profile.credits}
             <br />
-            Wins: 
+            Listings won: ${profile.wins.length}
             <br />
-            Offer listings: 
+            Listings offered: ${profile._count.listings}
             <br />
         </div>
     </div>
   </div>
   
 <h1 class="text-center mt-4 text-primary fw-bold">
-    Offered by ${profile.name}
+  Listings offered by ${profile.name}
 </h1>
+
+<div class="all-profile-listings container my-5 d-flex flex-wrap gap-5 justify-content-around">${listingsOfferedByUser}</div>
 `;
 }
 
-// function getEditProfileButton() {
-//   return `
-// <div class="d-flex justify-content-end me-5 mt-4">
-//     <button
-//         class="btn btn-secondary edit-avatar"
-//         data-toggle="modal"
-//         data-target="#feedbackModal"
-//         type="submit">Edit avatar
-//     </button>
-// </div>`;
-// }
+function getEditProfileButton() {
+  return `
+<div class="d-flex justify-content-end me-5 mt-4">
+  <a href="/src/html/profile/edit/" class="text-decoration-none" >
+    <button
+        class="btn btn-secondary edit-avatar"
+        type="submit">  Edit avatar
+    </button>
+  </a>
+</div>`;
+}
 
-// function getOfferedByUser(profileName) {
-//   return `
-// <div class="all-profile-listings d-flex justify-content-center"></div>
-// `;
-// }
+function getListingsOfferedByUser(listings) {
+  let listingsOffered = ``;
 
-/**
- * Creates the user profile header as html code
- * @param {string} name Name of user
- * @param {string} avatar Avatar of user
- * @returns {string} User profile header section
- */
-// function getProfileHeader(name, avatar) {
-//   const avatarImage = isValidUrl(avatar) ? avatar : DEFAULT_AVATAR;
+  listings.forEach((listing) => {
+    const mediaImage = isValidUrl(listing.media[0])
+      ? listing.media
+      : DEFAULT_LISTING_IMAGE;
 
-//   return `
-//     <div>
-//         <div class="card shadow-sm bg-white border-0 mt-1 rounded-0">
-//             <div class="card-body">
-//                 <img
-//                 src="${avatarImage}"
-//                 alt="${name}"
-//                 class="img-profile d-block ms-auto me-auto"
-//                 />
-//                 <h1 class="my-2 text-center user-owner">${name}</h1>
-//             </div>
-//         </div>
-//     </div>`;
-// }
+    listingsOffered += `
+        <div class="card border-0 listings-div" style="width: 18rem">
+          <a href="/src/html/listing/details/?id=${listing.id}" class="text-decoration-none">
+            <img
+              class="card-img-top"
+              src="${mediaImage}"
+              alt="${listing.title}"
+            />
+            <div class="card-body">
+              <h2 class="card-title text-primary">${listing.title}</h2>
+              <p class="card-text text-primary mb-1">Current bid counts: ${listing._count.bids}</p>
+              <p class="card-text text-danger">Ends at: ${listing.endsAt}</p>
+            </div>
+          </a>
+        </div>
+     `;
+  });
 
-/**
- * Creates the user profile info as html code
- * @param {string} name Name of user
- * @param {string} email Email of user
- * @returns {string} User profile info section
- */
+  return listingsOffered;
+}
