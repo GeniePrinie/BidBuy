@@ -2,6 +2,10 @@ $primary: #0b45c6;
 $secondary: #ffe200;
 $danger: #f00000;
 
-@import '../../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/bootstrap';
 @import './components/displayText';
 @import './components/carousel';
+
+main {
+  min-height: 90vh;
+}
