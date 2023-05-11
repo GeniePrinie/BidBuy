@@ -8,17 +8,6 @@ if (header) {
       .then((res) => res.text())
       .then((data) => {
         header.innerHTML = data;
-      })
-      .then(() => {
-        // const displayCredits = document.querySelector('.display-credits');
-        // const profile = loadFromLocalStorage('profile');
-        // getProfile(profile.name)
-        //   .then((profileData) => {
-        //     displayCredits.innerHTML = `<i class="fa-solid fa-coins"></i> ${profileData.credits}`;
-        //   })
-        //   .catch((error) => {
-        //     alert('Error = ' + error);
-        //   });
       });
   } else {
     fetch('/src/html/shared/unauthenticatedHeader.html')
