@@ -9,6 +9,7 @@ import {
   editProfile,
 } from './features/index.js';
 import { redirectToSearchListings } from './helpers/redirects.js';
+import { showCredits } from './helpers/showCredits/showCredits.js';
 
 const pages = {
   Start: '/index.html',
@@ -29,21 +30,27 @@ switch (path) {
   case pages.Start:
   case pages.Home:
     redirectToSearchListings();
+    showCredits();
     break;
   case pages.ListingSearch:
     showListings();
+    showCredits();
     break;
   case pages.ListingDetails:
     showListing();
+    showCredits();
     break;
   case pages.ListingCreate:
     createListing();
+    showCredits();
     break;
   case pages.ProfileDetails:
     showProfile();
+    showCredits();
     break;
   case pages.ProfileEdit:
     editProfile();
+    showCredits();
     break;
   case pages.Register:
     registerUser();
