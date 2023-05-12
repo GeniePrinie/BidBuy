@@ -124,7 +124,7 @@ export async function removeListing(id) {
 export async function bidOnListing(id, body) {
   const bearerToken = loadFromLocalStorage('token');
   const response = await fetch(`${API_AUCTION_URL}/listings/${id}/bids`, {
-    method: 'PUT',
+    method: 'POST',
     body: JSON.stringify(body),
     headers: {
       Authorization: 'Bearer ' + bearerToken,

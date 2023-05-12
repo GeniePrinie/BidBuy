@@ -1,3 +1,8 @@
+import {
+  saveToLocalStorage,
+  loadFromLocalStorage,
+} from '../../shared/localStorage.js';
+
 /**
  * Renders out a listing to the html page
  * @param {Array} listing Listing' data
@@ -8,6 +13,7 @@ export function renderShowListing(listing) {
     media: listing.media,
   };
   const listingTextData = {
+    id: listing.id,
     title: listing.title,
     description: listing.description,
     tags: listing.tags,
@@ -124,6 +130,10 @@ function listingText(listingTextData) {
   let htmlBids = ``;
   let highestBid = 0;
   let tags = ``;
+  let description = ``;
+  let bidButton = ``;
+
+  const closingDate = listingTextData.endsAt.replace('T', ' ').replace('Z', '');
 
   for (let i = 0; i < listingTextData.bids.length; i++) {
     const data = listingTextData.bids[i];
@@ -131,9 +141,19 @@ function listingText(listingTextData) {
     if (parseFloat(data.amount) > highestBid) highestBid = data.amount;
   }
 
+  saveToLocalStorage(listingTextData.id, { amount: highestBid });
+  if (loadFromLocalStorage('token')) {
+    bidButton = `<button class="btn btn-secondary"  type="submit" data-toggle="modal" data-target="#feedbackModal">Place a bid</button>`;
+  } else {
+    bidButton = `<button disabled class="btn btn-dark"  type="submit" >Place a bid</button>`;
+  }
+
   listingTextData.tags.forEach((tag) => {
     tags += `#${tag.toLowerCase()} `;
   });
+
+  if (listingTextData.description)
+    description = 'Description: ' + listingTextData.description;
 
   return `
   <div class="container-text col-md-7 mb-4">
@@ -141,89 +161,25 @@ function listingText(listingTextData) {
         <h1>${listingTextData.title}</h1>
         <em class="text-primary" >${tags}</em>
         <hr />
-        <div>Sell by ${listingTextData.seller} from ${listingTextData.created}</div>
-        <div>Bid counts: ${listingTextData.bidCount}</div>
+        <div>Listed by: <b>${listingTextData.seller}</b> from ${listingTextData.created}</div>
+        <div>Number of bids: ${listingTextData.bidCount}</div>
         <hr />
         <p class="fs-2">Current highest bid: ${highestBid}</p>
   
-        <p>${listingTextData.description}</p>
+        <p>${description}</p>
         <hr />
-        <p class="text-danger mt-3 fs-4 fw-bold">Closes in ${listingTextData.endsAt}</p>
-        <div class="d-flex gap-2 mb-4">
-            <div>
-                <input value="1" type="number" class="form-control" />
-            </div>
-            <a class="btn btn-secondary" href="#">Place a bid</a>
-        </div>
+        <p class="text-danger mt-3 fs-4 fw-bold">Bidding closes at ${closingDate}</p>
+        
+          <form class="d-flex gap-2 mb-4 bid-on-listing">
+              <div>
+                  <input name="amount" placeholder="amount" type="number" class="form-control" />
+              </div>
+              ${bidButton}
+          </form>
+        
         <hr />
         ${htmlBids}
     </div>
   </div>
   `;
 }
-
-// /**
-//  * Creates the listing description as html code
-//  * @param {string} title Title of listing
-//  * @param {string} description Description of listing
-//  * @param {string} listingCreated Listing created
-//  * @param {string} endsAt EndsAt of listing
-//  * @param {number} currentBidAmount Bids amount of listing
-//  * @param {string} bidder Bidder
-//  * @param {string} bidsCreated Bids created
-//  * @param {string} seller Seller
-//  * @param {number} countBids Counts of bids
-//  *
-//  * @returns {string} Listing
-//  */
-// function getListingText(
-//   listingTitle,
-//   description,
-//   listingCreated,
-//   endsAt,
-//   currentBidAmount,
-//   seller,
-//   countBids
-// ) {
-//   return `
-//  <div class="container-text col-md-7 mb-4">
-// <div class="display-text text-start mt-3 mt-md-0 p-4">
-//   <h1>${listingTitle}</h1>
-//   <div>Sell by ${seller} from ${listingCreated}</div>
-//   <div>Bid counts: ${countBids}</div>
-//   <hr />
-//   <p class="fs-2">Current bid: ${currentBidAmount}</p>
-
-//   <p>
-//   ${description}
-//   </p>
-//   <hr />
-//   <p class="text-danger mt-3 fs-4 fw-bold">
-//     Closes in ${endsAt}
-//   </p>
-//   <div class="d-flex gap-2 mb-4">
-//     <div>
-//       <input value="1" type="number" class="form-control" />
-//     </div>
-//     <a class="btn btn-secondary" href="#">Place a bid</a>
-//   </div>
-//   <hr />
-//   ${allBidders}
-// </div>
-// </div> `;
-// }
-
-// /**
-//  * Creates the bids from each bidder
-//  * @param {array} bids Comments of entry
-//  * @returns {string} bids list
-//  */
-// const allBidders = function getAllBidders(bids) {
-//   let buildBids = '';
-//   bids.forEach((bid) => {
-//     const { bidder, currentBidAmount, bidsCreated } = bid;
-
-//     buildBids += `<p class="">${bidder} bids ${currentBidAmount} at ${bidsCreated}</p>`;
-//     return buildBids;
-//   });
-// };

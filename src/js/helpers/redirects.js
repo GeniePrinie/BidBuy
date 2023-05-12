@@ -18,3 +18,10 @@ export function redirectToSearchListings() {
 export function redirectToProfileDetails() {
   window.location.replace('/src/html/profile/details/');
 }
+
+/**
+ * Redirects to profile page
+ */
+export function reloadCurrentPage() {
+  location.reload();
+}

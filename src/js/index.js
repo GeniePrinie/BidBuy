@@ -1,6 +1,7 @@
 import {
   showListings,
   showListing,
+  placeBid,
   createListing,
   loginUser,
   registerUser,
@@ -9,8 +10,6 @@ import {
   editProfile,
 } from './features/index.js';
 import { redirectToSearchListings } from './helpers/redirects.js';
-import { showAccount } from './helpers/showAccount/showAccount.js';
-import { showCredits } from './helpers/showCredits/showCredits.js';
 
 const pages = {
   Start: '/index.html',
@@ -31,33 +30,22 @@ switch (path) {
   case pages.Start:
   case pages.Home:
     redirectToSearchListings();
-    showCredits();
-    showAccount();
+
     break;
   case pages.ListingSearch:
     showListings();
-    showCredits();
-    showAccount();
     break;
   case pages.ListingDetails:
-    showListing();
-    showCredits();
-    showAccount();
+    showListing().then(() => placeBid());
     break;
   case pages.ListingCreate:
     createListing();
-    showCredits();
-    showAccount();
     break;
   case pages.ProfileDetails:
     showProfile();
-    showCredits();
-    showAccount();
     break;
   case pages.ProfileEdit:
     editProfile();
-    showCredits();
-    showAccount();
     break;
   case pages.Register:
     registerUser();
