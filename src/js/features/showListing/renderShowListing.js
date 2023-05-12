@@ -123,6 +123,7 @@ function listingImages(listingMediaData) {
 function listingText(listingTextData) {
   let htmlBids = ``;
   let highestBid = 0;
+  let tags = ``;
 
   for (let i = 0; i < listingTextData.bids.length; i++) {
     const data = listingTextData.bids[i];
@@ -130,10 +131,16 @@ function listingText(listingTextData) {
     if (parseFloat(data.amount) > highestBid) highestBid = data.amount;
   }
 
+  listingTextData.tags.forEach((tag) => {
+    tags += `#${tag.toLowerCase()} `;
+  });
+
   return `
   <div class="container-text col-md-7 mb-4">
     <div class="display-text text-start mt-3 mt-md-0 p-4">
         <h1>${listingTextData.title}</h1>
+        <em class="text-primary" >${tags}</em>
+        <hr />
         <div>Sell by ${listingTextData.seller} from ${listingTextData.created}</div>
         <div>Bid counts: ${listingTextData.bidCount}</div>
         <hr />
