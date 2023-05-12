@@ -8,10 +8,12 @@ import { DEFAULT_LISTING_IMAGE } from '../../shared/constants.js';
  */
 export function renderShowProfile(profile, listings) {
   const displayProfile = document.querySelector('.display-profile');
+  const pageTitle = document.querySelector('title');
 
   const editProfileButton = getEditProfileButton();
   const listingsOfferedByUser = getListingsOfferedByUser(listings);
 
+  pageTitle.innerHTML = `${profile.name.toUpperCase()}'s profile`;
   displayProfile.innerHTML = `  
 
   ${editProfileButton}
