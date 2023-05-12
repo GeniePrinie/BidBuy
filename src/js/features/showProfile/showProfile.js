@@ -11,7 +11,14 @@ import { renderShowProfile } from './renderShowProfile.js';
  */
 
 export function showProfile() {
-  const username = loadFromLocalStorage('profile').name;
+  const queryString = document.location.search;
+  const params = new URLSearchParams(queryString);
+  let username = params.get('username');
+
+  if (!username) {
+    username = loadFromLocalStorage('profile').name;
+    document.location.href = '/src/html/profile/details/?username=' + username;
+  }
   getProfile(username)
     .then((profile) => {
       getAllListingsForProfile(username).then((listings) => {

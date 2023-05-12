@@ -1,4 +1,5 @@
 import { isValidUrl } from '../../helpers/checkUrl.js';
+import { displayTime } from '../../helpers/timeDisplayer.js';
 import { DEFAULT_LISTING_IMAGE } from '../../shared/constants.js';
 
 /**
@@ -16,12 +17,14 @@ export function renderShowListings(listings) {
 
   listings.forEach((listing) => {
     const mediaImage = isValidUrl(listing.media[0])
-      ? listing.media
+      ? listing.media[0]
       : DEFAULT_LISTING_IMAGE;
 
     apiListings.innerHTML += `
         <div class="card border-0 listings-div" style="width: 18rem">
-          <a href="/src/html/listing/details/?id=${listing.id}" class="text-decoration-none">
+          <a href="/src/html/listing/details/?id=${
+            listing.id
+          }" class="text-decoration-none">
             <img
               class="card-img-top"
               src="${mediaImage}"
@@ -29,8 +32,12 @@ export function renderShowListings(listings) {
             />
             <div class="card-body">
               <h2 class="card-title text-primary">${listing.title}</h2>
-              <p class="card-text text-primary mb-1">Current bid counts: ${listing._count.bids}</p>
-              <p class="card-text text-danger">Ends at: ${listing.endsAt}</p>
+              <p class="card-text text-primary mb-1">Current bid counts: ${
+                listing._count.bids
+              }</p>
+              <p class="card-text text-danger">Ends at: ${displayTime(
+                listing.endsAt
+              )}</p>
             </div>
           </a>
         </div>

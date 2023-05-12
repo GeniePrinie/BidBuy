@@ -1,5 +1,10 @@
 import { isValidUrl } from '../../helpers/checkUrl.js';
 import { DEFAULT_LISTING_IMAGE } from '../../shared/constants.js';
+import { loadFromLocalStorage } from '../../shared/localStorage.js';
+
+const queryString = document.location.search;
+const params = new URLSearchParams(queryString);
+const username = params.get('username');
 
 /**
  * Renders out a user profile to the html page
@@ -43,15 +48,19 @@ export function renderShowProfile(profile, listings) {
 }
 
 function getEditProfileButton() {
-  return `
-<div class="d-flex justify-content-end me-5 mt-4">
-  <a href="/src/html/profile/edit/" class="text-decoration-none" >
-    <button
-        class="btn btn-secondary edit-avatar"
-        type="submit">  Edit avatar
-    </button>
-  </a>
-</div>`;
+  let editButton = ``;
+  if (username == loadFromLocalStorage('profile').name) {
+    editButton = `
+      <div class="d-flex justify-content-end me-5 mt-4">
+        <a href="/src/html/profile/edit/" class="text-decoration-none" >
+          <button
+              class="btn btn-secondary edit-avatar"
+              type="submit">  Edit avatar
+          </button>
+        </a>
+      </div>`;
+  }
+  return editButton;
 }
 
 function getListingsOfferedByUser(listings) {

@@ -1,3 +1,4 @@
+import { displayTime } from '../../helpers/timeDisplayer.js';
 import {
   saveToLocalStorage,
   loadFromLocalStorage,
@@ -133,11 +134,13 @@ function listingText(listingTextData) {
   let description = ``;
   let bidButton = ``;
 
-  const closingDate = listingTextData.endsAt.replace('T', ' ').replace('Z', '');
-
   for (let i = 0; i < listingTextData.bids.length; i++) {
     const data = listingTextData.bids[i];
-    htmlBids += `<p>${data.bidderName} bids ${data.amount} at ${data.created}</p>`;
+    htmlBids += `<p class="text-primary"> <a href="/src/html/profile/details/?username=${
+      data.bidderName
+    }" >${data.bidderName}</a> bids ${data.amount} at ${displayTime(
+      data.created
+    )}</p>`;
     if (parseFloat(data.amount) > highestBid) highestBid = data.amount;
   }
 
@@ -161,14 +164,20 @@ function listingText(listingTextData) {
         <h1>${listingTextData.title}</h1>
         <em class="text-primary" >${tags}</em>
         <hr />
-        <div>Listed by: <b>${listingTextData.seller}</b> from ${listingTextData.created}</div>
+        <div>Listed by: <b> <a href="/src/html/profile/details/?username=${
+          listingTextData.seller
+        }" >${listingTextData.seller}</a></b> from ${displayTime(
+    listingTextData.created
+  )}</div>
         <div>Number of bids: ${listingTextData.bidCount}</div>
         <hr />
         <p class="fs-2">Current highest bid: ${highestBid}</p>
   
         <p>${description}</p>
         <hr />
-        <p class="text-danger mt-3 fs-4 fw-bold">Bidding closes at ${closingDate}</p>
+        <p class="text-danger mt-3 fs-4 fw-bold">Bidding closes at ${displayTime(
+          listingTextData.endsAt
+        )}</p>
         
           <form class="d-flex gap-2 mb-4 bid-on-listing">
               <div>
