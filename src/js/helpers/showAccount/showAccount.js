@@ -1,16 +1,16 @@
 import { getProfile } from '../../controllers/profileController.js';
 import { displayError } from '../../helpers/eventDisplayer.js';
 import { loadFromLocalStorage } from '../../shared/localStorage.js';
-import { renderShowCredits } from './renderShowCredits.js';
+import { renderShowAccount } from './renderShowAccount.js';
 
 /**
- * Displays the credits
+ * Displays the username
  */
-export function showCredits() {
+export function showAccount() {
   const username = loadFromLocalStorage('profile').name;
   getProfile(username)
     .then((profile) => {
-      renderShowCredits(profile);
+      renderShowAccount(profile);
     })
 
     .catch((error) => {
