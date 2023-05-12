@@ -181,7 +181,7 @@ function listingText(listingTextData) {
         
           <form class="d-flex gap-2 mb-4 bid-on-listing">
               <div>
-                  <input name="amount" placeholder="amount" type="number" class="form-control" />
+                  <input name="amount" placeholder="amount" type="number" class="form-control" aria-label="amount" />
               </div>
               ${bidButton}
           </form>
