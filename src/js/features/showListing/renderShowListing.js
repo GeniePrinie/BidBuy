@@ -122,7 +122,7 @@ function listingImages(listingMediaData) {
 }
 
 /**
- * Creates the listing description as html code
+ * Creates the listing text as html code
  
  * @param {object} listingTextData Detailed info about listing
  * @returns {string} Listing description
@@ -133,22 +133,32 @@ function listingText(listingTextData) {
   let tags = ``;
   let description = ``;
   let bidButton = ``;
+  let sellerLink = ``;
 
   for (let i = 0; i < listingTextData.bids.length; i++) {
     const data = listingTextData.bids[i];
-    htmlBids += `<p class="text-primary"> <a href="/src/html/profile/details/?username=${
-      data.bidderName
-    }" >${data.bidderName}</a> bids ${data.amount} at ${displayTime(
-      data.created
-    )}</p>`;
-    if (parseFloat(data.amount) > highestBid) highestBid = data.amount;
+    if (loadFromLocalStorage('token')) {
+      htmlBids += `<p class="text-primary"> <a href="/src/html/profile/details/?username=${
+        data.bidderName
+      }" >${data.bidderName}</a> bids ${data.amount} at ${displayTime(
+        data.created
+      )}</p>`;
+      if (parseFloat(data.amount) > highestBid) highestBid = data.amount;
+    } else {
+      htmlBids += `<p class="text-primary">${data.bidderName} bids ${
+        data.amount
+      } at ${displayTime(data.created)}</p>`;
+    }
   }
 
   saveToLocalStorage(listingTextData.id, { amount: highestBid });
+
   if (loadFromLocalStorage('token')) {
     bidButton = `<button class="btn btn-secondary"  type="submit" data-toggle="modal" data-target="#feedbackModal">Place a bid</button>`;
+    sellerLink = `<a href="/src/html/profile/details/?username=${listingTextData.seller}" >${listingTextData.seller}</a>`;
   } else {
     bidButton = `<button disabled class="btn btn-dark"  type="submit" >Place a bid</button>`;
+    sellerLink = `<span>${listingTextData.seller}</span>`;
   }
 
   listingTextData.tags.forEach((tag) => {
@@ -164,9 +174,7 @@ function listingText(listingTextData) {
         <h1>${listingTextData.title}</h1>
         <em class="text-primary" >${tags}</em>
         <hr />
-        <div>Listed by: <b> <a href="/src/html/profile/details/?username=${
-          listingTextData.seller
-        }" >${listingTextData.seller}</a></b> from ${displayTime(
+        <div>Listed by: <b> ${sellerLink}</b> from ${displayTime(
     listingTextData.created
   )}</div>
         <div>Number of bids: ${listingTextData.bidCount}</div>
