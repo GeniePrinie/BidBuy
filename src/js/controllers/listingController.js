@@ -116,7 +116,7 @@ export async function removeListing(id) {
 }
 
 /**
- * Adds a bid amount to a specific listing by using a POST api request
+ * Adds a bid to a specific listing by using a POST api request
  * @param {number} id Listing id
  * @param {object} body Listing body
  * @returns {Promise} Response data from api

@@ -46,7 +46,7 @@ export function renderShowListings(listings) {
 }
 
 /**
- * Renders out a search bar in the header
+ * Renders out a search bar in the header of listings' html page
  */
 export function renderSearchBar() {
   const searchBar = document.querySelector('.display-search');

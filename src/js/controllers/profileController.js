@@ -24,7 +24,7 @@ export async function getProfiles() {
 
 /**
  * Gets a profile by using a GET api request
- * @param {object} username User profile
+ * @param {string} username User profile
  * @returns {Promise} Response data from api
  */
 export async function getProfile(username) {
@@ -46,7 +46,7 @@ export async function getProfile(username) {
 
 /**
  * Updates a profile by using a PUT api request
- * @param {object} username User profile
+ * @param {string} username User profile
  * @param {object} body Listing body
  * @returns {Promise} Response data from api
  */
@@ -73,7 +73,7 @@ export async function updateProfileAvatar(username, body) {
 
 /**
  * Gets all listings for profile by using a GET api request
- * @param {object} username User profile
+ * @param {string} username User profile
  * @returns {Promise} Response data from api
  */
 export async function getAllListingsForProfile(username) {
@@ -98,7 +98,7 @@ export async function getAllListingsForProfile(username) {
 
 /**
  * Gets all bids for profile by using a GET api request
- * @param {object} username User profile
+ * @param {string} username User profile
  * @returns {Promise} Response data from api
  */
 export async function getAllBidsForProfile(username) {

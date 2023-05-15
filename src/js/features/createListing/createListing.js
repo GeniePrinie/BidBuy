@@ -6,7 +6,7 @@ import {
 } from '../../helpers/eventDisplayer.js';
 
 /**
- * Create entry based of user input
+ * Create listing based of user input
  */
 export function createListing() {
   const formCreateListing = document.querySelector('.form-create-listing');
@@ -35,8 +35,8 @@ export function createListing() {
 }
 
 /**
- * Validate user input when creating a new entry
- * @param {object} listing Input data from user to create a new entry
+ * Validate user input when creating a new listing
+ * @param {object} listing Input data from user to create a new listing
  * @returns {object} Validated user input
  */
 function restructureUserInput(listing) {

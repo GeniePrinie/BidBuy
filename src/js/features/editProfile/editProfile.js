@@ -1,15 +1,15 @@
 import { updateProfileAvatar } from '../../controllers/profileController.js';
 import { redirectToProfileDetails } from '../../helpers/redirects.js';
+import { isValidUrl } from '../../helpers/checkUrl.js';
+import { DEFAULT_AVATAR } from '../../shared/constants.js';
+import { loadFromLocalStorage } from '../../shared/localStorage.js';
 import {
   displaySuccessful,
   displayError,
 } from '../../helpers/eventDisplayer.js';
-import { isValidUrl } from '../../helpers/checkUrl.js';
-import { DEFAULT_AVATAR } from '../../shared/constants.js';
-import { loadFromLocalStorage } from '../../shared/localStorage.js';
 
 /**
- * Create entry based of user input
+ * Edit profile avatar based of user input
  */
 export function editProfile() {
   const formEditAvatar = document.querySelector('.form-edit-avatar');

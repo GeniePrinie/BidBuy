@@ -27,6 +27,9 @@ export async function showListing() {
     });
 }
 
+/**
+ * Place bid on listing based of user input, if user is logged in
+ */
 export function placeBid() {
   const formBidOnListing = document.querySelector('.bid-on-listing');
 
@@ -58,6 +61,11 @@ export function placeBid() {
   }
 }
 
+/**
+ * Checks if bid is higher than the current highest bid on listing
+ * @param {number} bid User bid on listing
+ * @returns {boolean} Result of user bid vs highest bid
+ */
 function checkBid(bid) {
   const highestBid = loadFromLocalStorage(id);
   if (bid > highestBid.amount) return true;

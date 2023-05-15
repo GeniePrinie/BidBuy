@@ -1,15 +1,14 @@
+import { displayError } from '../../helpers/eventDisplayer.js';
+import { loadFromLocalStorage } from '../../shared/localStorage.js';
+import { renderShowProfile } from './renderShowProfile.js';
 import {
   getProfile,
   getAllListingsForProfile,
 } from '../../controllers/profileController.js';
-import { displayError } from '../../helpers/eventDisplayer.js';
-import { loadFromLocalStorage } from '../../shared/localStorage.js';
-import { renderShowProfile } from './renderShowProfile.js';
 
 /**
- * Display profile of the logged in user
+ * Displays profile based of URL parameter (username) on current page
  */
-
 export function showProfile() {
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);

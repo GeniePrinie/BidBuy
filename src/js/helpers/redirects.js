@@ -6,7 +6,7 @@ export function redirectToLoginUser() {
 }
 
 /**
- * Redirects to home page
+ * Redirects to home page/listings page
  */
 export function redirectToSearchListings() {
   window.location.replace('/src/html/listing/search/');
@@ -20,7 +20,7 @@ export function redirectToProfileDetails() {
 }
 
 /**
- * Redirects to profile page
+ * Redirects to same page
  */
 export function reloadCurrentPage() {
   location.reload();

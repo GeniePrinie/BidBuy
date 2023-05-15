@@ -30,7 +30,6 @@ switch (path) {
   case pages.Start:
   case pages.Home:
     redirectToSearchListings();
-
     break;
   case pages.ListingSearch:
     showListings();

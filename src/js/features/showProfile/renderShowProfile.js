@@ -10,7 +10,7 @@ const username = params.get('username');
 /**
  * Renders out a user profile to the html page
  * @param {object} profile User profile
- * @param {object} listings Listing for user profile
+ * @param {Array} listings Listings created by corresponding user
  */
 export function renderShowProfile(profile, listings) {
   const displayProfile = document.querySelector('.display-profile');
@@ -48,6 +48,10 @@ export function renderShowProfile(profile, listings) {
 `;
 }
 
+/**
+ * Renders out a 'edit avatar' button design based of if user is logged in or not
+ *  * @returns {string} Html code that renders out a button
+ */
 function getEditProfileButton() {
   let editButton = ``;
   if (username == loadFromLocalStorage('profile').name) {
@@ -64,6 +68,11 @@ function getEditProfileButton() {
   return editButton;
 }
 
+/**
+ * Structures and creates html code from listings data
+ * @param {Array} listings Listings created by user
+ * @returns {string} Html code that renders out all the listing
+ */
 function getListingsOfferedByUser(listings) {
   let listingsOffered = ``;
 
