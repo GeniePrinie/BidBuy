@@ -46,10 +46,10 @@ The client has specified the following requirements in the form of User Stories:
 
 The company CTO has set the following technical restrictions:
 
-1. Must use an approved CSS Framework
-2. Must be hosted on an approved Static Host
-3. Must use an approved Design Application
-4. Must use an approved Planning Application
+1. Must use an approved CSS Framework : SASS/SCSS, Bootstrap (version >5.0.1)
+2. Must be hosted on an approved Static Host : Netlify
+3. Must use an approved Design Application : Adobe XD, Figma
+4. Must use an approved Planning Application : Trello
 
 ### Required links
 
