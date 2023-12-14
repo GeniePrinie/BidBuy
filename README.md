@@ -4,6 +4,10 @@
 
 [![Automated E2E Testing](https://github.com/GeniePrinie/BidBuy/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/GeniePrinie/BidBuy/actions/workflows/e2e-test.yml)
 
+## Description
+
+The project was to create a responsive Auction site.
+
 # Noroff Semester Project 2
 
 ## Local setup
