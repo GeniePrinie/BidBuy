@@ -1,4 +1,6 @@
-# BidBuy
+# BidBuy, an auction site by Prinyapon Prinyanut
+![Screenshot 2023-12-14 at 2 23 13 PM](https://github.com/GeniePrinie/BidBuy/assets/100139381/2aec5b57-473c-42aa-85ed-ae3b53f3ecd3)
+
 
 [![Automated E2E Testing](https://github.com/GeniePrinie/BidBuy/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/GeniePrinie/BidBuy/actions/workflows/e2e-test.yml)
 
